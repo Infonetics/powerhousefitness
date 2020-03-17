@@ -72,7 +72,13 @@
                                       /*  $sql="INSERT INTO tbl_trainer (`email`,`fname`,`lname`,`gender`,`dob`,`designation`,`description`,`contact`,`married_status`,`age`,`address`,`feet`,`inches`,`weight`,`image`,`joined_date`,`created_on`) values ('$email','$firstname','$lastname','$gender','$dob','$designation','$description','$contact','$martial_status','$age','$address','$feet','$inches','$weight','$image','$joined_date',NOW())";*/
                                       /* echo $sql;
                                         exit;*/
-                                        $sql="INSERT INTO `".DB_PREFIX."`.`tbl_trainer` (`email`,`fname`,`lname`,`gender`,`dob`,`designation`,`description`,`contact`,`married_status`,`age`,`address`,`feet`,`inches`,`weight`,`trainer_facebook`,`trainer_watsapp`,`trainer_instagram`,`image`,`joined_date`,`created_on`,`sort_order`) values ('".trim($email)."','".trim($firstname)."','".trim($lastname)."','".trim($gender)."','".trim($dob)."','".trim($designation)."','".trim(addslashes($description))."','".trim($contact)."','".trim($martial_status)."','".trim($age)."','".trim(addslashes($address))."','".trim($feet)."','".trim($inches)."','".trim($weight)."','".trim($trainer_facebook)."','".trim($trainer_watsapp)."','".trim($trainer_instagram)."','".trim($image)."','".trim($joined_date)."',NOW(),'".trim($sort_order)."')";
+                                        $sql1="SELECT `trainer_id` FROM `".DB_PREFIX"`.`tbl_trainer` ORDER BY `trainer_id` DESC LIMIT 0,1";
+                                        $result1=mysqli_query($con,$sql1);
+                                        while($count=mysqli_fetch_array($result1))
+                                        {
+                                           $count=$count+1;
+                                        }
+                                        $sql="INSERT INTO `".DB_PREFIX."`.`tbl_trainer` (`email`,`fname`,`lname`,`gender`,`dob`,`designation`,`description`,`contact`,`married_status`,`age`,`address`,`feet`,`inches`,`weight`,`trainer_facebook`,`trainer_watsapp`,`trainer_instagram`,`image`,`joined_date`,`created_on`,`sort_order`) values ('".trim($email)."','".trim($firstname)."','".trim($lastname)."','".trim($gender)."','".trim($dob)."','".trim($designation)."','".trim(addslashes($description))."','".trim($contact)."','".trim($martial_status)."','".trim($age)."','".trim(addslashes($address))."','".trim($feet)."','".trim($inches)."','".trim($weight)."','".trim($trainer_facebook)."','".trim($trainer_watsapp)."','".trim($trainer_instagram)."','".trim($image)."','".trim($joined_date)."',NOW(),'$count')";
                                        /*echo $sql;
                                         exit;*/
                                        
